@@ -1,0 +1,29 @@
+{
+	"name": "code",
+	"version": "1.0.0",
+	"description": "Interview Code",
+	"main": "src/index.ts",
+	"private": true,
+	"scripts": {
+		"build": "tsc",
+		"dev": "parcel src/index.html",
+		"start": "NODE_ENV=production node dist"
+	},
+	"engines": {
+		"node": "10.x"
+	},
+	"author": "Pablo Rosales <me@pablorosales.xyz>",
+	"license": "SEE LICENSE IN LICENSE.md",
+	"dependencies": {
+		"react": "^16.8.4",
+		"react-dom": "^16.8.4"
+	},
+	"devDependencies": {
+		"tailwindcss": "^0.7.4",
+		"@types/react": "^16.8.7",
+		"@types/react-dom": "^16.8.2",
+		"parcel-bundler": "^1.12.0",
+		"ts-node-dev": "^1.0.0-pre.32",
+		"typescript": "^3.3.3333"
+	}
+}
