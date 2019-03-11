@@ -15,6 +15,8 @@
 	"author": "Pablo Rosales <me@pablorosales.xyz>",
 	"license": "SEE LICENSE IN LICENSE.md",
 	"dependencies": {
+		"axios": "^0.18.0",
+		"lodash": "^4.17.11",
 		"react": "^16.8.4",
 		"react-dom": "^16.8.4"
 	},

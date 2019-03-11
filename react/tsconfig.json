@@ -1,7 +1,19 @@
 {
     "compilerOptions": {
+        "target": "es5",
+        "module": "es2015",
+        "noImplicitAny": false,
+        "moduleResolution": "node",
+        "removeComments": true,
         "outDir": "dist",
-        "jsx": "react",
+        "noImplicitThis": true,
+        "sourceMap": true,
+        "types": ["react", "react-dom"],
+        "lib": ["es2015", "dom"],
+        "allowSyntheticDefaultImports": true,
+        "experimentalDecorators": true,
+        "allowJs": true,
+        "jsx": "react"
     },
     "include": [
         "src/**/*",
