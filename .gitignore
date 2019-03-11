@@ -63,3 +63,6 @@ typings/
 # Build
 dist
 .cache
+
+# Python
+venv
