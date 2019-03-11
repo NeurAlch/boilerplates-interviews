@@ -3,16 +3,9 @@ import * as React from "react";
 import { uniqBy } from "lodash";
 import { Album } from "./Album";
 import * as ReactDOM from "react-dom";
+import { IAlbumPhoto } from "./types/IAlbumPhoto";
 
 let DATA = undefined;
-
-export interface IAlbumPhoto {
-    id: number;
-    url: string;
-    title: string;
-    albumId: number;
-    thumbnailUrl: string;
-}
 
 const getAlbums = async (): Promise<number[] | undefined> => {
 

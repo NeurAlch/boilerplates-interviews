@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import { IAlbumPhoto } from "./Gallery";
+import { IAlbumPhoto } from "./types/IAlbumPhoto";
 
 export class Album extends React.Component<{id: number; color: string; photos: IAlbumPhoto[];}, {}> {
     static displayName = "Album";
