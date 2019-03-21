@@ -14,8 +14,11 @@
 	},
 	"author": "Pablo Rosales <me@pablorosales.xyz>",
 	"license": "SEE LICENSE IN LICENSE.md",
-	"dependencies": {},
+	"dependencies": {
+		"express": "^4.16.4"
+	},
 	"devDependencies": {
+		"@types/express": "^4.16.1",
 		"@types/node": "^11.11.0",
 		"parcel-bundler": "^1.12.0",
 		"ts-node-dev": "^1.0.0-pre.32",

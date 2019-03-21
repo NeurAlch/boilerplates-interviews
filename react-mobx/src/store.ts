@@ -23,7 +23,7 @@ class Store {
 
         this.fetching = true;
 
-        return fetch("https://seo.pablorosales.xyz/api/name")
+        return fetch("http://localhost:8080/api/name")
             .then(response => response.json())
             .then(json => {
 
