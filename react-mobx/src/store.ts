@@ -1,36 +1,41 @@
 import fetch from "cross-fetch";
 import { observable, action, runInAction } from "mobx";
 
-interface IName {
-    lastName: string;
-    firstName: string;
+export interface IProduct {
+    id: string;
+    name: string;
+    description: string;
 }
 
-const getEmptyData = () => {
+const getEmptyData = (): {products: IProduct[]} => {
     return {
-        firstName: "",
-        lastName: "",
-    }
+        products: [],
+    };
 }
 
 class Store {
 
     @observable error = "";
     @observable fetching = false;
-    @observable.shallow name = getEmptyData();
+    @observable.shallow data = getEmptyData();
 
-    @action async getName() {
+    @action async getProducts() {
 
         this.fetching = true;
 
-        return fetch("http://localhost:8080/api/name")
+        return fetch("http://localhost:8080/api/products", {headers: {
+            "X-Requester": "ScalablePathTest",
+        }})
             .then(response => response.json())
             .then(json => {
 
                 runInAction(() => {
 
-                    this.name = json;
-                    this.fetching = false;
+                    this.data = json;
+
+                    setTimeout(() => {
+                        this.fetching = false;
+                    }, 3000);
 
                 });
 
@@ -40,8 +45,8 @@ class Store {
                 runInAction(() => {
 
                     this.fetching = false;
-                    this.name = getEmptyData();
-                    this.error = "Error getting data";
+                    this.data = getEmptyData();
+                    this.error = "Error getting products";
 
 
                 });

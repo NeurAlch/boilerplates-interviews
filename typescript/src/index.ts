@@ -1,6 +1,9 @@
+import * as cors from "cors";
+import { setupDB } from "./db";
 import * as express from "express";
 import * as bodyParser from "body-parser";
 import { Request, Response, Application } from "express";
+import { getProducts, IProductModel, createProduct } from "./products";
 
 const start = (callback: (app: Application) => void) => {
 
@@ -22,21 +25,54 @@ const start = (callback: (app: Application) => void) => {
 
 }
 
-const apiName = async (req: Request, res: Response): Promise<void> => {
+const apiProductsGET = async (req: Request, res: Response): Promise<void> => {
 
-    res.header('Access-Control-Allow-Origin', '*');
-    res.header('Access-Control-Allow-Methods', 'GET');
-    res.header('Access-Control-Allow-Headers', 'Content-Type');
+    const requester = req.get("X-Requester");
+
+    if (requester !== "ScalablePathTest") {
+
+        res.status(403).json({
+            products: [],
+        });
+
+        return;
+
+    }
+
+    const products = await getProducts();
 
     res.json({
-        firstName: "Pablo",
-        lastName: "Rosales",
+        products: products.map((product) => ({id: product._id, name: product.name, description: product.description})),
     });
 
 }
 
-start((app: Application) => {
+const createProductsSample = async () => {
 
-    app.get("/api/name$/", apiName);
+    await createProduct({
+        name: "VSCode",
+        description: "The Editor",
+    });
+
+    await createProduct({
+        name: "JavaScript",
+        description: "The Language",
+    });
+
+}
+
+setupDB();
+
+start(async (app: Application) => {
+
+    // await createProductsSample();
+
+    const corsOptions = {
+        optionsSuccessStatus: 200,
+        origin: "*",
+    };
+
+    app.options('/api/products$/', cors(corsOptions));
+    app.get("/api/products$/", cors(corsOptions), apiProductsGET);
 
 })
