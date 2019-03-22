@@ -2,5 +2,7 @@
     "cSpell.words": [
         "aiohttp"
     ],
-    "python.pythonPath": "python/venv/bin/python"
+    "python.pythonPath": "python/venv/bin/python",
+    "elm.compiler": "elm/node_modules/.bin/elm",
+    "elm.makeCommand": "elm/node_modules/.bin/elm-make",
 }
