@@ -1,13 +1,28 @@
-#!/usr/bin/env python3
-
 import asyncio
+from aiohttp import web
 
-async def main():
-    print("Hello World")
-    await asyncio.sleep(1)
-    print("Bye Bye")
+def api_names(request):
+
+    names = [
+        {
+            "firstName": "Pablo",
+            "lastName": "Rosales",
+        },
+        {
+            "firstName": "Anon",
+            "lastName": "Anon",
+        },
+    ]
+
+    return web.json_response(names)
+
 
 if __name__ == "__main__":
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(asyncio.wait([main()]))
-    loop.close()
+
+    app = web.Application()
+
+    app.add_routes([
+        web.get("/names", api_names),
+    ])
+
+    web.run_app(app)
